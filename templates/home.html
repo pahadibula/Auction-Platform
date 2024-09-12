@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Auction{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Ongoing Auctions</h1>
+    <div class="row">
+        {% for auction in auctions %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ auction.image_url }}" class="card-img-top" alt="{{ auction.item_name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ auction.item_name }}</h5>
+                    <p class="card-text">Current Bid: ${{ auction.highest_bid }}</p>
+                    <a href="{{ url_for('auction_page', auction_id=auction._id) }}" class="btn btn-primary">View Auction</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<h2 class="text-center mt-5">Completed Auctions</h2>
+<ul>
+    {% for auction in completed_auctions %}
+    <li>{{ auction.item_name }} - Winner: {{ auction.highest_bidder }} with ${{ auction.highest_bid }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

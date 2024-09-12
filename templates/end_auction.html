@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}End Auction{% endblock %}
+
+{% block content %}
+<h1 class="text-center">End Auction</h1>
+<p>Select the auction you wish to end:</p>
+<ul>
+    {% for auction in ongoing_auctions %}
+    <li>
+        <form action="{{ url_for('end_auction_route', auction_id=auction._id) }}" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-danger">End Auction for {{ auction.item_name }}</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
