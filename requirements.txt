@@ -1,5 +1,0 @@
-Flask==2.0.1
-Flask-PyMongo==2.3.0
-redis==3.5.3
-kafka-python==2.0.2
-flask-wtf==0.15.1
