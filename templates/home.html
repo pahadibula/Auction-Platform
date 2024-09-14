@@ -19,12 +19,25 @@
         </div>
         {% endfor %}
     </div>
-</div>
 
-<h2 class="text-center mt-5">Completed Auctions</h2>
-<ul>
-    {% for auction in completed_auctions %}
-    <li>{{ auction.item_name }} - Winner: {{ auction.highest_bidder }} with ${{ auction.highest_bid }}</li>
-    {% endfor %}
-</ul>
+    <h2 class="text-center mt-5">Completed Auctions</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Winner</th>
+                <th>Final Bid</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for auction in completed_auctions %}
+            <tr>
+                <td>{{ auction.item_name }}</td>
+                <td>{{ auction.highest_bidder }}</td>
+                <td>${{ auction.highest_bid }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
