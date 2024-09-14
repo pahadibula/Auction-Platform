@@ -7,9 +7,22 @@
 <p>Final Bid: ${{ auction.highest_bid }}</p>
 <p>Winner: {{ auction.highest_bidder }}</p>
 <h2>Bid History</h2>
-<ul>
-    {% for bid in auction.bid_history %}
-        <li>{{ bid.user }} bid ${{ bid.amount }} at {{ bid.time }}</li>
-    {% endfor %}
-</ul>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Bid Amount</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bid in auction.bid_history|reverse %}
+        <tr>
+            <td>{{ bid.user }}</td>
+            <td>${{ bid.amount }}</td>
+            <td>{{ bid.time.strftime('%d-%m-%Y %H:%M') }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
