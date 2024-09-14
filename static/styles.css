@@ -29,6 +29,9 @@ li {
 
 form {
     margin-top: 20px;
+    margin: 0 auto; /* Centers the form on the page */
+    padding: 20px; /* Adds some padding around the form */
+    max-width: 600px;
 }
 
 input[type="text"], input[type="number"] {
@@ -37,6 +40,8 @@ input[type="text"], input[type="number"] {
     width: 100%;
     border-radius: 5px;
     border: 1px solid #ccc;
+    max-width: 400px; 
+    box-sizing: border-box;
 }
 
 button {
@@ -51,3 +56,10 @@ button {
 button:hover {
     background-color: #218838;
 }
+
+.card-img-top {
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    width: 100%;       /* Ensures the image takes full width of the card */
+    height: 200px;     /* Sets a fixed height for the image */
+}
+
