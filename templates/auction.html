@@ -4,24 +4,42 @@
 
 {% block content %}
 <div class="text-center">
-    <img src="{{ url_for('static', filename='uploads/rolexwatch.avif') }}" alt="{{ auction.item_name }}" class="img-fluid" style="max-width: 25%; height: auto;" />
+    <!-- <img src="{{ auction.image_url }}" alt="{{ auction.item_name }}" class="img-fluid" style="max-width: 25%; height: auto;" /> -->
     <h1>{{ auction.item_name }}</h1>
-    <h3>Current Bid: ${{ auction.highest_bid }}</h3>
-    <h4>Highest Bidder: {{ auction.highest_bidder }}</h4>
-    <p>Time of Highest Bid: {{ auction.highest_bid_time }}</p>
+    <h6>Current Bid: ${{ auction.highest_bid }}</h3>
+    <h6>Highest Bidder: {{ auction.highest_bidder }}</h4>
+    <!-- <p>Time of Highest Bid: {{ auction.highest_bid_time }}</p> -->
 
     <form id="bid_form" action="{{ url_for('place_bid_route') }}" method="POST">
         <input type="hidden" name="auction_id" value="{{ auction._id }}">
         <input type="text" name="user" placeholder="Your Name">
         <input type="number" name="bid_amount" placeholder="Your Bid">
+        <br>
         <button type="submit" class="btn btn-success mt-2">Place Bid</button>
     </form>
 
-    <h2>Bid History</h2>
-    <ul>
-        {% for bid in auction.bid_history %}
-        <li>{{ bid.user }} bid ${{ bid.amount }} at {{ bid.time }}</li>
-        {% endfor %}
-    </ul>
+    <h2 class="mt-4">Bid History</h2>
+    <table class="table table-bordered table-striped mt-3">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Bid Amount</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bid in auction.bid_history %}
+            <tr>
+                <td>{{ bid.user }}</td>
+                <td>${{ bid.amount }}</td>
+                <td>{{ bid.time.strftime('%d-%m-%Y %H:%M') }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">No bids placed yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
